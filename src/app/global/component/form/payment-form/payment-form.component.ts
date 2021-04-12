@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppConstant } from 'src/app/global/constants/appConstant';
+import { AppState } from 'src/app/global/model/app-state.model';
 import { CountryCode } from 'src/app/global/model/country-code';
+import { CreatePaymentRequest } from 'src/app/global/model/create-payment-request';
 import { AlertService } from 'src/app/global/services/alert.service';
 import { RequestService } from 'src/app/global/services/request.service';
+import { AddUsersAction } from 'src/app/global/store/actions/user.actions';
 import * as countryCodeData from './../../../json-data/countryCode.json'
 @Component({
   selector: 'app-payment-form',
@@ -16,15 +21,17 @@ export class PaymentFormComponent implements OnInit {
   paymentForm!: FormGroup;
   isFormSubmitted: boolean = false;
   isDropDown: boolean = false;
-  selectedDialCode: any = '+40';
-  selectedCountryCode: string = 'Romania (RO)';
+  selectedDialCode: any = AppConstant.defaultDialCode;
+  selectedCountryCode: string = AppConstant.defaultCountryCode;
+  createPaymentRequest: CreatePaymentRequest = new CreatePaymentRequest();
 
   constructor(
     private fb: FormBuilder,
     private requestService: RequestService,
     private alertService: AlertService,
     private router: Router,
-    private routes: ActivatedRoute) {
+    private routes: ActivatedRoute,
+    private store:Store<AppState>) {
   }
 
   ngOnInit(): void {
@@ -82,8 +89,14 @@ export class PaymentFormComponent implements OnInit {
       return;
     }
 
-    console.log(this.paymentForm.value)
-    this.requestService.postRequest('filed', 'createPaymentRequest', this.paymentForm.value)
+    this.createPaymentRequest.firstName = this.firstName.value;
+    this.createPaymentRequest.lastName = this.lastName.value;
+    this.createPaymentRequest.email = this.email.value;
+    this.createPaymentRequest.monthlyBudget = this.monthlyBudget.value;
+    this.createPaymentRequest.number = this.number.value;
+
+    this.store.dispatch(new AddUsersAction(this.createPaymentRequest));
+    this.requestService.postRequest('filed', 'createPaymentRequest', this.createPaymentRequest)
       .subscribe(response => {
         if (response) {
           console.log(response);

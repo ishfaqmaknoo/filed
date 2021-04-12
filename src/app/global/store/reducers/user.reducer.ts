@@ -6,8 +6,8 @@ const initialState: Array<UserList> = [
     firstName: 'John',
     lastName: 'Doe',
     email: 'johndoe@mail.com',
-    budget: 4000,
-    mobile: 9999999999
+    monthlyBudget: 4000,
+    number: 9999999999
   }
 ];
 
