@@ -1,0 +1,22 @@
+<div class="testimonials">
+  <div class="row">
+    <div class="col-4" *ngFor="let testimonial of testimonials">
+      <div class="testimonial p-r-40">
+        <div class="testimonial-header flex">
+          <img class="testimonial-quote" src="./../../../../../assets/media/quote.svg" alt="quote">
+          <h4 class="m-b-0">"{{testimonial.title}}"</h4>
+        </div>
+        <div class="testimonial-body">
+          <p>"{{testimonial.content}}"</p>
+        </div>
+        <div class="testimonial-footer flex flex-center">
+          <img src="./../../../../../assets/media/{{testimonial.img_url}}" alt="{{testimonial.name}}">
+          <span class="testimonial-meta">
+            <p class="testimonial-name">{{testimonial.name}}</p>
+            <p class="testimonial-designation">{{testimonial.designation}}</p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

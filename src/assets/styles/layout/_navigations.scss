@@ -1,0 +1,27 @@
+.footer-nav{
+  ul{
+    @extend .flex;
+    @extend .flex-wrap;
+    li{
+      padding-right:20px;
+      a{
+        color:#fff;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+
+@include tablet{
+  .footer-nav{
+    ul{
+      li{
+        padding-right: 40px;
+        a{
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}

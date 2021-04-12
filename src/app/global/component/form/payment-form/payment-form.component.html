@@ -1,0 +1,70 @@
+<div class="form-wrapper">
+  <h2 class="hide-on-mobile">We’ll be in touch to get your trial set up.</h2>
+  <p class="hide-on-mobile">Fill Out Form</p>
+  <p class="hide-on-desktop theme-blue-color font-18">Fill out Details</p>
+  <form [formGroup]="paymentForm" (ngSubmit)="createPayment()">
+    <div class="flex">
+      <div class="form-group">
+        <input type="text" name="firstName" class="form-input" formControlName="firstName" required>
+        <label>First Name*</label>
+        <div class="error" *ngIf="(isFormSubmitted || firstName?.touched) && firstName?.invalid">
+          First Name is required
+        </div>
+      </div>
+      <div class="spacer"></div>
+      <div class="form-group">
+        <input type="text" class="form-input" formControlName="lastName" required>
+        <label>Last Name*</label>
+        <div class="error" *ngIf="(isFormSubmitted || lastName?.touched) && lastName?.invalid">
+          Last Name is required
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" name="email" class="form-input" formControlName="email" required>
+      <label>Work Email*</label>
+      <div class="error" *ngIf="(isFormSubmitted || email?.touched) && email?.invalid">
+        Email is required
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" name="budget" class="form-input" formControlName="monthlyBudget" required>
+      <label>Monthly Advertising Budget*</label>
+      <div class="error" *ngIf="(isFormSubmitted || monthlyBudget?.touched) && monthlyBudget?.invalid">
+        <div *ngIf="monthlyBudget?.errors?.required">
+          Monthly Budget is required
+        </div> 
+        <div *ngIf="monthlyBudget?.errors?.pattern">
+          Numbers Only
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="custom-select-wrapper flex flex-center form-input">
+        <div (clickOutside)="clickOutside()" class="custom-select flex flex-center">
+          <div class="custom-input flex flex-center flex-between" (click)="toggleDropDown()">
+            <span class="custom-input-text">{{selectedCountryCode}}</span>
+            <span class="down-arrow m-r-10"></span>
+          </div>
+          <div class="custom-options" *ngIf="isDropDown">
+            <span class="custom-option" (click)="selectedCode(code)" *ngFor="let code of countryCode">{{code.name}} ({{code.code}})</span>
+          </div>
+          <span>{{selectedDialCode}}</span>
+        </div>
+        <input type="text" class="form-input-transparent input-border" name="number" formControlName="number">
+      </div>
+      <div class="error" *ngIf="(isFormSubmitted || number?.touched) && number?.invalid">
+        <div *ngIf="number?.errors?.required">
+          Number is required
+        </div>
+        <div *ngIf="number?.errors?.pattern">
+          Numbers Only
+        </div>
+        <div *ngIf="number?.errors?.minlength">
+          Number should be minimum 8 characters
+        </div>
+      </div>
+    </div>
+    <button class="btn form-btn" type="submit">GET FREE TRIAL</button>
+  </form>
+</div>

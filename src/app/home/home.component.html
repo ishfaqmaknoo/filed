@@ -1,0 +1,34 @@
+<div class="flex flex-center flex-wrap">
+  <div class="col-4">
+    <div class="card" routerLink="/landing-page">
+      <div class="card-head">
+        <img src="./../../assets/media/filed-logo.png" alt="filed logo">
+      </div>
+      <div class="card-body">
+        <h4>Visit Landing Page</h4>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Get store data-->
+  <div class="user-data col-8 p-r-20 p-l-20" *ngFor="let user of userList$ | async">
+    <h2>Store Data</h2>
+    <div class="table flex">
+      <div>
+        <h4>{{user.firstName}}</h4>
+      </div>
+      <div>
+        <h4>{{user.lastName}}</h4>
+      </div>
+      <div>
+        <h4>{{user.email}}</h4>
+      </div>
+      <div>
+        <h4>{{user.budget}}</h4>
+      </div>
+      <div>
+        <h4>{{user.mobile}}</h4>
+      </div>
+    </div>
+  </div>
+</div>

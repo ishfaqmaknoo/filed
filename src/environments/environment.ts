@@ -2,8 +2,12 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import {filed_config} from './local/appConfig';
+
 export const environment = {
-  production: false
+  development:true,
+  production: false,
+  filed: filed_config,
 };
 
 /*

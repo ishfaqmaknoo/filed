@@ -1,0 +1,13 @@
+$gray-color: #595957;
+$theme-blue: #38CCF5;
+
+.gray-bg{
+  background-color: $gray-color;
+}
+.theme-blue-color{
+  color: $theme-blue;
+}
+.testimonials{
+  background: transparent linear-gradient(180deg, #38CCF5 0%, #3ECCF5 0%, #42CCF5 16%, #36C1EE 38%, #119FD6 62%, #2A97BF 81%, #108ABF 100%) 0% 0% no-repeat padding-box;
+  color: #fff;
+}
